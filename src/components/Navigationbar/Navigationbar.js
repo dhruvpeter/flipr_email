@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import "./Navigationbar.css"
+import "./Navigationbar.css";
 export default function Navigationbar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="" variant="dark">
