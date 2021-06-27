@@ -22,7 +22,7 @@ export default function Compose() {
         setToSend({ ...toSend, [e.target.name]: e.target.value });
       };
     return (
-        <div className="body">
+        <div className="b">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body message">
