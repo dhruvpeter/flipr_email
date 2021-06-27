@@ -5,8 +5,6 @@ import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
 import Month from './Monthly'
 export default function Compose() {
-    
-    
     const [input, setinput] = useState({
         to:'',
         cc:[],
@@ -16,8 +14,9 @@ export default function Compose() {
         day:'',
         date:'',
         month:'',
-        rec:'',
-        });
+        time:''
+        
+      });
     
      const onSubmit = (e) => {
         console.log(input);
@@ -42,12 +41,19 @@ export default function Compose() {
                   <label>Date</label>
                     <input type="text" name="date" onChange={handleChange} value={input.date}></input>
 
+
+                    <label>Time</label>
+                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>
               </div>);}
            if(t == 'weekly'){
                return(
                 <div>
                     <label>Day</label>
                     <input type="text" name='day' onChange={handleChange} value={input.day}></input>
+
+
+                    <label>Time</label>
+                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>               
                 </div>
                );
            } 
@@ -60,6 +66,8 @@ export default function Compose() {
   
                     <label>Month</label>
                     <input type="text" name='month' onChange={handleChange} value={input.month}></input>
+                    <label>Time</label>
+                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>
                    </div>
                )
            }
@@ -112,36 +120,19 @@ export default function Compose() {
                         </div>
                         {/* <br>	 */}
                         
-                        <div class="form-group" className="check">
-                        
-                        <input type="checkbox"/>
-                        <label for="bcc" class="col-sm-1 control-label" id="c">Recurring </label>
-                        </div>
+
                         <div className="schedule">
+                            <p>Schedule:</p>
                         <div class="form-group" id="w">
-                            <select name ='type'  onChange={handleChange}  value={input.type}>
-                            <option name = 'type' value="weekly">Weekly</option>
-                            <option name = 'type' value="monthly">Monthly</option>
-                            <option name = 'type'  value="yearly">Yearly</option>
+                            <select name ='t'  onChange={handleChange}  value={input.t}>
+                            <option name = 't' value="----">----</option>
+                            <option name = 't' value="weekly">Weekly</option>
+                            <option name = 't' value="monthly">Monthly</option>
+                            <option name = 't'  value="yearly">Yearly</option>
+                            <option name = 't'  value="recurring">Recurring</option>
                             </select>
                         </div>
-                        {s(input.type)}
-                        {/* <div class="form-group" className="date">
-                        
-                        <DatePicker
-                        id="dt"
-                        onChange={onChangeDate}
-                        value={value}
-                        />
-                        </div>
-                        <div class="form-group" className="date">
-                        
-                        <TimePicker
-                        id="dt"
-                         onChange={onChangeTime}
-                         value={time}
-                        />
-                        </div> */}
+                        {s(input.t)}
                         </div>
                     
                         

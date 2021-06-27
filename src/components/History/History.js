@@ -5,7 +5,7 @@ export default function History() {
   const mail = [
     {
       from: "from@gmail.com",
-      to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
+      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
       sentDate: "December 17, 2020 03:24:00",
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -15,7 +15,7 @@ export default function History() {
     },
     {
       from: "from@gmail.com",
-      to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
+      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
       sentDate: "December 17, 2020 03:24:00",
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -25,7 +25,7 @@ export default function History() {
     },
     {
       from: "from@gmail.com",
-      to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
+      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
       sentDate: "December 17, 2020 03:24:00",
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -35,7 +35,7 @@ export default function History() {
     },
     {
       from: "from@gmail.com",
-      to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
+      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
       sentDate: "December 17, 2020 03:24:00",
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -48,7 +48,7 @@ export default function History() {
   //Filtering mails based on count. if count>0, then it is already sent.
   //Only those mails are needed to be displayed
   //const history_mail = mail.filter((data, index) => data.count > 0);
-  
+
   return (
     <div className="container-fluid">
       <h2 className="heading">History</h2>
@@ -67,7 +67,11 @@ export default function History() {
           {mail.map((data, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{data.to}</td>
+              <td>
+                {data.recipients.map((data, index) => (
+                  <div key={index}>{data} </div>
+                ))}
+              </td>
               <td colSpan="3">{data.subject}</td>
               <td>{data.sentDate}</td>
             </tr>

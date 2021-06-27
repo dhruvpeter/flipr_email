@@ -1,10 +1,10 @@
 import React from "react";
-import { Badge } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 import "./SelectedMailHistory.css";
 export default function SelectedMailHistory() {
   const mail = {
     from: "from@gmail.com",
-    to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
+    recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
     sentDate: "December 17, 2020 03:24:00",
     subject:
       "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -14,6 +14,11 @@ export default function SelectedMailHistory() {
   };
   return (
     <div className="container-fluid">
+      <div>
+        <Button variant="light" className="goBack">
+          <i class="fas fa-long-arrow-alt-left"></i> Go Back
+        </Button>
+      </div>
       <div className="subject">
         <h4>{mail.subject}</h4>
         <Badge pill bg="primary" className="type">
@@ -29,14 +34,14 @@ export default function SelectedMailHistory() {
       <br />
       <div className="to">
         <h6>To: </h6>
-        {mail.to}
+        {mail.recipients.map((data, index) => (
+          <div key={index}>{data} </div>
+        ))}
       </div>
       <br />
-      <div className="to">
-        <div className="date">
-          <h6>Date:</h6>
-          {mail.sentDate}
-        </div>
+      <div className="date">
+        <h6>Date:</h6>
+        {mail.sentDate}
       </div>
 
       <hr />
