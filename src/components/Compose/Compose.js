@@ -5,6 +5,7 @@ import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
 import Month from './Monthly'
 import axios from 'axios'
+import { Alert } from 'react-bootstrap'
 export default function Compose({ token }) {
     const [toSend, setToSend] = useState({
         to:'',
@@ -33,8 +34,18 @@ export default function Compose({ token }) {
             options
         );
 
+        console.log(res);
+
+
         if(res.data && res.data.success) {
             // success redirect
+            return (
+                <Alert variant="success" style={{ width: 500, textAlign: "center" }}>
+                    Email Sent Successfully
+                    <br />
+                    <Alert.Link href="#">Go to Home</Alert.Link>
+                </Alert>
+            )
 
         } else {
             // failure redirect
@@ -54,7 +65,7 @@ export default function Compose({ token }) {
                 scheduleMails('http://localhost:3000/api/emails/recurring', { timeGap: 30 });
                 break;
             case 'weekly':
-                scheduleMails(
+                return scheduleMails(
                     'http://localhost:3000/api/emails/weekly', 
                     { 
                         day: toSend.day, 
@@ -64,7 +75,7 @@ export default function Compose({ token }) {
                 break;
             case 'monthly':
                 scheduleMails(
-                    'http://localhost:3000/api/emails/monthly', 
+                    'https:localhost:3000/api/emails/monthly', 
                     { 
                         date: toSend.date,
                         time: toSend.time 
