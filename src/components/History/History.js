@@ -11,7 +11,7 @@ export default function History() {
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       body: "Body of mail",
       type: "weekly",
-      count: 0,
+      count: 1,
     },
     {
       from: "from@gmail.com",
@@ -47,7 +47,7 @@ export default function History() {
 
   //Filtering mails based on count. if count>0, then it is already sent.
   //Only those mails are needed to be displayed
-  const history_mail = mail.filter((data, index) => data.count > 0);
+  //const history_mail = mail.filter((data, index) => data.count > 0);
   
   return (
     <div className="container-fluid">
@@ -64,7 +64,7 @@ export default function History() {
           </tr>
         </thead>
         <tbody>
-          {history_mail.map((data, index) => (
+          {mail.map((data, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{data.to}</td>
