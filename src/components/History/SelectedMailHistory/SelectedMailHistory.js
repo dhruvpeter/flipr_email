@@ -15,9 +15,10 @@ export default function SelectedMailHistory() {
   return (
     <div className="container-fluid">
       <div>
+        <a href="/history">
         <Button variant="light" className="goBack">
           <i class="fas fa-long-arrow-alt-left"></i> Go Back
-        </Button>
+        </Button></a>
       </div>
       <div className="subject">
         <h4>{mail.subject}</h4>

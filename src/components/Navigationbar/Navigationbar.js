@@ -9,12 +9,12 @@ export default function Navigationbar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="">Home</Nav.Link>
-            <Nav.Link href="">History</Nav.Link>
-            <Nav.Link href="">Compose Mail</Nav.Link>
+            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/history">History</Nav.Link>
+            <Nav.Link href="/compose">Compose Mail</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="">Sign out</Nav.Link>
+            <Nav.Link href="/">Sign out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

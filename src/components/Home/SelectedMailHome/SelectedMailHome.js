@@ -19,9 +19,10 @@ export default function SelectedMailHome() {
   return (
     <div className="container-fluid">
       <div >
+        <a href="/home">
         <Button variant="light" className="goBack">
           <i class="fas fa-long-arrow-alt-left"></i> Go Back
-        </Button>
+        </Button></a>
       </div>
 
       <div className="subject">

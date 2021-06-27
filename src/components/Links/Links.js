@@ -7,9 +7,12 @@ import SelectedMailHistory from "../History/SelectedMailHistory/SelectedMailHist
 import SelectedMailHome from "../Home/SelectedMailHome/SelectedMailHome";
 import AlertSuccess from "../Compose/AlertSuccess/AlertSuccess";
 import AlertFailure from "../Compose/AlertFailure/AlertFailure";
+import Nav from "../Navigationbar/Navigationbar";
 export default function Links(props) {
+  const token = 123;
   return (
     <Router>
+      <Nav />
       <Switch>
         <Route
           path="/home"
@@ -24,11 +27,11 @@ export default function Links(props) {
           render={(props) => <Compose {...props} token={token} />}
         />
         <Route
-          path="/history/selectedmailhistory"
+          path="/selectedmailhistory"
           render={(props) => <SelectedMailHistory {...props} token={token} />}
         />
         <Route
-          path="/home/selectedmailhome"
+          path="/selectedmailhome"
           render={(props) => <SelectedMailHome {...props} token={token} />}
         />
         <Route

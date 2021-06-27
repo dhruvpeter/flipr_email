@@ -34,39 +34,47 @@ export default function Compose() {
     //   };
       const s = (t) =>{
           if(t == 'monthly'){
-              console.log('hi');
               
-              return(<div>
+              
+              return(<div className="sch">
+                  <div id="sc">
                   <label>Date</label>
-                    <input type="text" name="date" onChange={handleChange} value={input.date}></input>
-
-
+                    <input id="i"  type="text" name="date" onChange={handleChange} value={input.date}></input>
+                    </div>
+                    <div id="sc">
                     <label>Time</label>
-                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>
+                            <input id="i"type="text" name='time' onChange={handleChange} value={input.time}></input>
+                            </div>
               </div>);}
            if(t == 'weekly'){
                return(
-                <div>
+                <div className="sch">
+                    <div id="sc">
                     <label>Day</label>
-                    <input type="text" name='day' onChange={handleChange} value={input.day}></input>
-
-
+                    <input id="i" type="text" name='day' onChange={handleChange} value={input.day}></input>
+                    </div>
+                    <div id="sc">
                     <label>Time</label>
-                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>               
+                            <input id="i" type="text" name='time' onChange={handleChange} value={input.time}></input>               
+                    </div>
                 </div>
                );
            } 
            if(t=='yearly'){
                return(
-                   <div>
+                   <div className="sch">
+                       <div id="sc">
                     <label>Date</label>
-                    <input type="text" name="date" onChange={handleChange} value={input.date}></input>
-
-  
+                    <input id="i" type="text" name="date" onChange={handleChange} value={input.date}></input>
+                    </div>
+                    <div id="sc">
                     <label>Month</label>
-                    <input type="text" name='month' onChange={handleChange} value={input.month}></input>
+                    <input id="i" type="text" name='month' onChange={handleChange} value={input.month}></input>
+                    </div>
+                    <div id="sc">
                     <label>Time</label>
-                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>
+                            <input id="i" type="text" name='time' onChange={handleChange} value={input.time}></input>
+                            </div>
                    </div>
                )
            }
@@ -105,19 +113,7 @@ export default function Compose() {
                     
                     <div class="col-sm-11 col-sm-offset-1">
                         
-                        <div class="btn-toolbar" role="toolbar">
-                            
-                            <div class="btn-group">
-                                <button class="btn btn-default"><span class="fa fa-bold"></span></button>
-                                <button class="btn btn-default"><span class="fa fa-italic"></span></button>
-                                <button class="btn btn-default"><span class="fa fa-underline"></span></button>
-                            </div>
-
-                            
-                            
-                            
-                        </div>
-                        {/* <br>	 */}
+                        
                         
 
                         <div className="schedule">

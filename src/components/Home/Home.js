@@ -65,8 +65,9 @@ export default function Home() {
         </thead>
         <tbody>
           {mail.map((data, index) => (
+            
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td><a href="/selectedmailhome"><button>{index + 1}</button></a></td>
               <td>
                 {data.recipients.map((data, index) => (
                   <div key={index}>{data} </div>
@@ -105,6 +106,7 @@ export default function Home() {
                 })()}
               </td>
             </tr>
+            
           ))}
         </tbody>
       </Table>
