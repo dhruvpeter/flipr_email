@@ -7,11 +7,40 @@ import History from "./components/History/History";
 import Home from "./components/Home/Home";
 import Compose from "./components/Compose/Compose";
 import Profile from "./components/Profile/Profile"
+import { useState } from "react";
 
-function App() {
+function App(props) {
+  
   return (
     <div className="App">
-      <Compose token={'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZDgzYmIyY2E2ODM4NmI1ZDg3YjNkMiIsImlhdCI6MTYyNDc4MzgwMH0.KLk2ZoA36SrUj0f4ig1pbOYBg7vkfZYKkaWyoBKXXxk'}/>
+
+      <Router>
+        <Route 
+          path='/'
+          exact
+          render={(props) => (
+            <Login />
+          )}
+        />
+        <Route 
+          path='/home'
+          render={(props) => (
+            <Home {...props} token={localStorage.getItem('token')} />
+          )}
+        />
+        <Route
+          path='/history'
+          render={(props)=>{
+            <History {...props} token={localStorage.getItem('token')} />
+          }}
+        />
+        <Route
+          path='/compose'
+          render={(props)=>{
+            <Compose {...props} token={localStorage.getItem('token')} />
+          }}
+        />
+      </Router>
     </div>
   );
 }

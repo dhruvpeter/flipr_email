@@ -3,16 +3,17 @@ import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import "./Home.css";
 
-export default function Home({ token }) {
+export default function Home(props) {
 
   const [mails, setMails] = useState([]);
 
   useEffect(async () => {
+    console.log(props);
     const res = await axios({
       method: 'GET',
       url: 'http://localhost:3000/api/emails/scheduled',
       headers: {
-        authorization: `BEARER ${token}`
+        authorization: `BEARER ${props.token}`
       }
     });
     console.log(res.data);
