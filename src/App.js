@@ -1,11 +1,11 @@
 import Navigationbar from "./components/Navigationbar/Navigationbar";
-import SelectedMail from "./components/History/SelectedMail/SelectedMail";
+import SelectedMailHistory from "./components/History/SelectedMailHistory/SelectedMailHistory";
 import History from "./components/History/History";
 function App() {
   return (
     <div className="App">
       <Navigationbar />
-      <SelectedMail />
+      <SelectedMailHistory />
     
     </div>
   );

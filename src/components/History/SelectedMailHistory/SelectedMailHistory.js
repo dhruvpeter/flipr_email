@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge } from "react-bootstrap";
-import "./SelectedMail.css";
-export default function SelectedMail() {
+import "./SelectedMailHistory.css";
+export default function SelectedMailHistory() {
   const mail = {
     from: "from@gmail.com",
     to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
