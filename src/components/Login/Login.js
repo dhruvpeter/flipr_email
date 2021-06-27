@@ -24,15 +24,8 @@ export default function Login() {
         accessType: 'offline'
     });
 
-    const handleSignIn = () => {
-        axios({
-            method: 'POST',
-            body: {
-                schedule: {
-                    day: day
-                }
-            }
-        })
+    const onSubmit = (e) => {
+        console.log(e.preventDefault());
     }
     return (
         
@@ -47,7 +40,7 @@ export default function Login() {
                                         <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text" class="input" placeholder="Enter your username"/> </div>
                                         <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Enter your password"/> </div>
                                         <div class="group"> <input id="check" type="checkbox" class="check" checked/> <label for="check"><span class="icon"></span> Keep me Signed in</label> </div>
-                                        <div class="group"> <input type="submit" class="button" value="Sign In" onClick={handleSignIn}/> </div>
+                                        <div class="group"> <input type="submit" class="button" value="Sign In" onClick={onsubmit}/> </div>
                                         <div class="group"> <button onClick={signIn} className="button"><FontAwesomeIcon icon={faGoogle} style={{marginRight:"10%",fontSize:"1.5rem"}}  /><span className="buttonText">Sign in with Google</span></button> </div>
                                         <div class="hr"></div>
                                         <div class="foot"> <a href="#">Forgot Password?</a> </div>
