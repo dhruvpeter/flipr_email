@@ -1,49 +1,25 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import "./Home.css";
-export default function Home() {
-  const mail = [
-    {
-      from: "from@gmail.com",
-      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
-      subject:
-        "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      body: "Body of mail",
-      type: "weekly",
-      count: 0,
-      schedule: {
-        day: "Saturday",
-        time: "19:29:00",
-      },
-    },
-    {
-      from: "from@gmail.com",
-      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
-      subject:
-        "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      body: "Body of mail",
-      type: "monthly",
-      count: 0,
-      schedule: {
-        date: "26",
-        time: "19:37:00",
-      },
-    },
-    {
-      from: "from@gmail.com",
-      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
-      subject:
-        "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      body: "Body of mail",
-      type: "yearly",
-      count: 0,
-      schedule: {
-        date: "26",
-        month: "6",
-        time: "19:41:00",
-      },
-    },
-  ];
+
+export default function Home({ token }) {
+
+  const [mails, setMails] = useState([]);
+
+  useEffect(async () => {
+    const res = await axios({
+      method: 'GET',
+      url: 'http://localhost:3000/api/emails/scheduled',
+      headers: {
+        authorization: `BEARER ${token}`
+      }
+    });
+    console.log(res.data);
+    if(res.data.success) {
+      setMails(res.data.emails)
+    }
+  }, [])
 
   //Filtering mails based on count. if count>0, then it is already sent.
   //Only those mails are needed to be displayed
@@ -64,7 +40,7 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          {mail.map((data, index) => (
+          {mails.map((data, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>

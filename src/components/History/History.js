@@ -1,49 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { Table } from "react-bootstrap";
 import "./History.css";
-export default function History() {
-  const mail = [
-    {
-      from: "from@gmail.com",
-      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
-      sentDate: "December 17, 2020 03:24:00",
-      subject:
-        "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      body: "Body of mail",
-      type: "weekly",
-      count: 1,
-    },
-    {
-      from: "from@gmail.com",
-      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
-      sentDate: "December 17, 2020 03:24:00",
-      subject:
-        "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      body: "Body of mail",
-      type: "monthly",
-      count: 1,
-    },
-    {
-      from: "from@gmail.com",
-      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
-      sentDate: "December 17, 2020 03:24:00",
-      subject:
-        "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      body: "Body of mail",
-      type: "yearly",
-      count: 1,
-    },
-    {
-      from: "from@gmail.com",
-      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
-      sentDate: "December 17, 2020 03:24:00",
-      subject:
-        "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      body: "Body of mail",
-      type: "recurring",
-      count: 10,
-    },
-  ];
+
+
+export default function History({ token }) {
+
+  const [mails, setMails] = useState([]);
+
+  useEffect(async () => {
+    const res = await axios({
+      method: 'GET',
+      url: 'http://localhost:3000/api/emails/history',
+      headers: {
+        authorization: `BEARER ${token}`
+      }
+    });
+    console.log(res.data);
+    if(res.data.success) {
+      setMails(res.data.emails)
+    }
+  }, [])
 
   //Filtering mails based on count. if count>0, then it is already sent.
   //Only those mails are needed to be displayed
@@ -64,7 +41,7 @@ export default function History() {
           </tr>
         </thead>
         <tbody>
-          {mail.map((data, index) => (
+          {mails.map((data, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>
