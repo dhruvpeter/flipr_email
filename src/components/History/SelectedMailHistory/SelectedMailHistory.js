@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 import "./SelectedMailHistory.css";
 export default function SelectedMailHistory() {
   const mail = {
@@ -14,6 +14,11 @@ export default function SelectedMailHistory() {
   };
   return (
     <div className="container-fluid">
+      <div>
+        <Button variant="light" className="goBack">
+          <i class="fas fa-long-arrow-alt-left"></i> Go Back
+        </Button>
+      </div>
       <div className="subject">
         <h4>{mail.subject}</h4>
         <Badge pill bg="primary" className="type">

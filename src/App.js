@@ -8,7 +8,8 @@ import Compose from "./components/Compose/Compose";
 function App() {
   return (
     <div className="App">
-      <Compose />
+      <Navigationbar />
+      <SelectedMailHistory />
     </div>
   );
 }
