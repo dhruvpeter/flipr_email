@@ -1,6 +1,8 @@
 import React from "react";
 import { Badge, Button } from "react-bootstrap";
 import "./SelectedMailHome.css";
+import Nav from '../../Navigationbar/Navigationbar'
+
 export default function SelectedMailHome() {
   const mail = {
     from: "from@gmail.com",
@@ -18,6 +20,7 @@ export default function SelectedMailHome() {
   };
   return (
     <div className="container-fluid">
+      <Nav/>
       <div >
         <a href="/home">
         <Button variant="light" className="goBack">

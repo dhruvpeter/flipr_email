@@ -2,6 +2,11 @@ import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import "./Navigationbar.css";
 export default function Navigationbar() {
+
+  const onLogout = () => {
+    localStorage.setItem('token', "");
+  }
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="" variant="dark">
       <Container>
@@ -14,7 +19,7 @@ export default function Navigationbar() {
             <Nav.Link href="/compose">Compose Mail</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="/">Sign out</Nav.Link>
+            <Nav.Link href="/" onClick={onLogout}>Sign out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

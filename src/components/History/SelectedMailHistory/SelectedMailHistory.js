@@ -1,6 +1,8 @@
 import React from "react";
 import { Badge, Button } from "react-bootstrap";
 import "./SelectedMailHistory.css";
+import Nav from '../../Navigationbar/Navigationbar'
+
 export default function SelectedMailHistory() {
   const mail = {
     from: "from@gmail.com",
@@ -14,6 +16,7 @@ export default function SelectedMailHistory() {
   };
   return (
     <div className="container-fluid">
+      <Nav />
       <div>
         <a href="/history">
         <Button variant="light" className="goBack">

@@ -8,39 +8,47 @@ import SelectedMailHome from "../Home/SelectedMailHome/SelectedMailHome";
 import AlertSuccess from "../Compose/AlertSuccess/AlertSuccess";
 import AlertFailure from "../Compose/AlertFailure/AlertFailure";
 import Nav from "../Navigationbar/Navigationbar";
+import Login from "../Login/Login"
+
+
 export default function Links(props) {
-  const token = 123;
+
   return (
     <Router>
-      <Nav />
       <Switch>
         <Route
+            path="/"
+            exact
+            render={(props) => <Login/>}
+        />
+        <Route
           path="/home"
-          render={(props) => <Home {...props} token={token} />}
+          render={(props) => <Home {...props} token={localStorage.getItem('token')} />}
         />
         <Route
           path="/history"
-          render={(props) => <History {...props} token={token} />}
+          render={(props) => <History {...props} token={localStorage.getItem('token')} />}
         />
         <Route
           path="/compose"
-          render={(props) => <Compose {...props} token={token} />}
+          exact
+          render={(props) => <Compose {...props} token={localStorage.getItem('token')} />}
         />
         <Route
           path="/selectedmailhistory"
-          render={(props) => <SelectedMailHistory {...props} token={token} />}
+          render={(props) => <SelectedMailHistory {...props} token={localStorage.getItem('token')} />}
         />
         <Route
           path="/selectedmailhome"
-          render={(props) => <SelectedMailHome {...props} token={token} />}
+          render={(props) => <SelectedMailHome {...props} token={localStorage.getItem('token')} />}
         />
         <Route
           path="/compose/alertsuccess"
-          render={(props) => <AlertSuccess {...props} token={token} />}
+          render={(props) => <AlertSuccess {...props} token={localStorage.getItem('token')} />}
         />
         <Route
           path="/compose/alertfailure"
-          render={(props) => <AlertFailure {...props} token={token} />}
+          render={(props) => <AlertFailure {...props} token={localStorage.getItem('token')} />}
         />
       </Switch>
     </Router>
