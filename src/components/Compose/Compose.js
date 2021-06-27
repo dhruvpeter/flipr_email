@@ -5,47 +5,49 @@ import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
 import Month from './Monthly'
 export default function Compose() {
-    const [value, onChangeDate] = useState(new Date());
-    const [time, onChangeTime] = useState('10:00');
-    const [toSend, setToSend] = useState({
+    
+    
+    const [input, setinput] = useState({
         to:'',
-        cc:'',
+        cc:[],
         subject:'',
-        t:'',
+        type:'',
         mailbody:'',
         day:'',
         date:'',
         month:'',
-        
-        
-        
-      });
+        rec:'',
+        });
     
      const onSubmit = (e) => {
-        console.log(toSend);
+        console.log(input);
         e.preventDefault();
         {/* --- METHOD TO SEND THE MAIL --- */}
         
       };
     
       const handleChange = (e) => {
-        setToSend({ ...toSend, [e.target.name]: e.target.value });
+        setinput({ ...input, [e.target.name]: e.target.value });
         
       };
+    //   const handleChangecc = (e) =>{
+    //     setinput({ ...input, [e.target.name]: e.target.value.split(',').map(s => s.trim()) });
+
+    //   };
       const s = (t) =>{
           if(t == 'monthly'){
               console.log('hi');
               
               return(<div>
                   <label>Date</label>
-                    <input type="text" name="date" onChange={handleChange} value={toSend.date}></input>
+                    <input type="text" name="date" onChange={handleChange} value={input.date}></input>
 
               </div>);}
            if(t == 'weekly'){
                return(
                 <div>
                     <label>Day</label>
-                    <input type="text" name='day' onChange={handleChange} value={toSend.day}></input>
+                    <input type="text" name='day' onChange={handleChange} value={input.day}></input>
                 </div>
                );
            } 
@@ -53,11 +55,11 @@ export default function Compose() {
                return(
                    <div>
                     <label>Date</label>
-                    <input type="text" name="date" onChange={handleChange} value={toSend.date}></input>
+                    <input type="text" name="date" onChange={handleChange} value={input.date}></input>
 
   
                     <label>Month</label>
-                    <input type="text" name='month' onChange={handleChange} value={toSend.month}></input>
+                    <input type="text" name='month' onChange={handleChange} value={input.month}></input>
                    </div>
                )
            }
@@ -74,20 +76,20 @@ export default function Compose() {
                         <div class="form-group" className="input">
                             <label for="to" class="col-sm-1 control-label">To:</label>
                             <div class="col-sm-11">
-                                <input type="email" class="form-control select2-offscreen" id="to" placeholder="Type email" tabindex="-1" name="to" value={toSend.to} onChange={handleChange}/>
+                                <input type="email" class="form-control select2-offscreen" id="to" placeholder="Type email" tabindex="-1" name="to" value={input.to} onChange={handleChange}/>
                             </div>
                         </div>
                         <div class="form-group" className="input">
                             <label for="cc" class="col-sm-1 control-label">CC:</label>
                             <div class="col-sm-11">
-                                <input type="email" class="form-control select2-offscreen" id="cc" placeholder="Type email" tabindex="-1" name="cc" value={toSend.cc}
+                                <input type="email" class="form-control select2-offscreen" id="cc" placeholder="Type email" tabindex="-1" name="cc" value={input.cc}
                         onChange={handleChange}/>
                             </div>
                         </div>
                         <div class="form-group" className="input">
                             <label for="bcc" class="col-sm-1 control-label">Sub:</label>
                             <div class="col-sm-11">
-                                <input type="email" class="form-control select2-offscreen" id="bcc" placeholder="Subject" tabindex="-1" name="subject" value={toSend.subject}
+                                <input type="email" class="form-control select2-offscreen" id="bcc" placeholder="Subject" tabindex="-1" name="subject" value={input.subject}
                         onChange={handleChange}/>
                             </div>
                         </div>
@@ -117,13 +119,13 @@ export default function Compose() {
                         </div>
                         <div className="schedule">
                         <div class="form-group" id="w">
-                            <select name ='t'  onChange={handleChange}  value={toSend.t}>
-                            <option name = 't' value="weekly">Weekly</option>
-                            <option name = 't' value="monthly">Monthly</option>
-                            <option name = 't'  value="yearly">Yearly</option>
+                            <select name ='type'  onChange={handleChange}  value={input.type}>
+                            <option name = 'type' value="weekly">Weekly</option>
+                            <option name = 'type' value="monthly">Monthly</option>
+                            <option name = 'type'  value="yearly">Yearly</option>
                             </select>
                         </div>
-                        {s(toSend.t)}
+                        {s(input.type)}
                         {/* <div class="form-group" className="date">
                         
                         <DatePicker
@@ -144,7 +146,7 @@ export default function Compose() {
                     
                         
                         <div class="form-group" className="mailbody">
-                            <textarea class="form-control" id="message" name="mailbody" rows="12" placeholder="Click here to reply" value={toSend.mailbody}
+                            <textarea class="form-control" id="message" name="mailbody" rows="12" placeholder="Click here to reply" value={input.mailbody}
                         onChange={handleChange}></textarea>
                         </div>
                         
