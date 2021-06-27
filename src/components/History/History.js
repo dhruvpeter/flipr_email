@@ -11,7 +11,7 @@ export default function History({ token }) {
   useEffect(async () => {
     const res = await axios({
       method: 'GET',
-      url: 'http://localhost:3000/api/emails/history',
+      url: '/api/emails/history',
       headers: {
         authorization: `BEARER ${token}`
       }
@@ -40,7 +40,7 @@ export default function History({ token }) {
         <tbody>
           {mails.map((data, index) => (
             <tr key={index}>
-              <td><a href="/selectedmailhistory"><button>{index + 1}</button></a></td>
+              <td>{index + 1}</td>
               <td>
                 {data.recipients.map((data, index) => (
                   <div key={index}>{data} </div>
