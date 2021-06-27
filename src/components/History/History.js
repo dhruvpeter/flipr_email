@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Table } from "react-bootstrap";
 import "./History.css";
-
+import Nav from '../Navigationbar/Navigationbar'
 
 export default function History({ token }) {
 
@@ -22,12 +22,9 @@ export default function History({ token }) {
     }
   }, [])
 
-  //Filtering mails based on count. if count>0, then it is already sent.
-  //Only those mails are needed to be displayed
-  //const history_mail = mail.filter((data, index) => data.count > 0);
-
   return (
     <div className="container-fluid">
+      <Nav/>
       <h2 className="heading">History</h2>
       <Table hover>
         <thead>
@@ -43,7 +40,7 @@ export default function History({ token }) {
         <tbody>
           {mails.map((data, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td><a href="/selectedmailhistory"><button>{index + 1}</button></a></td>
               <td>
                 {data.recipients.map((data, index) => (
                   <div key={index}>{data} </div>

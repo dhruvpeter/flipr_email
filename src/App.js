@@ -8,13 +8,14 @@ import Home from "./components/Home/Home";
 import Compose from "./components/Compose/Compose";
 import Profile from "./components/Profile/Profile"
 import { useState } from "react";
+import Links from './components/Links/Links'
 
 function App(props) {
   
   return (
     <div className="App">
-
-      <Router>
+        <Links/>
+      {/* <Router>
         <Route 
           path='/'
           exact
@@ -40,7 +41,7 @@ function App(props) {
             <Compose {...props} token={localStorage.getItem('token')} />
           }}
         />
-      </Router>
+      </Router> */}
     </div>
   );
 }

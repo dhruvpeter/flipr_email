@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import "./Home.css";
+import Nav from '../Navigationbar/Navigationbar'
 
 export default function Home(props) {
 
@@ -28,6 +29,7 @@ export default function Home(props) {
 
   return (
     <div className="container-fluid">
+      <Nav />
       <h2 className="heading">Home</h2>
       <Table hover>
         <thead>
@@ -43,7 +45,7 @@ export default function Home(props) {
         <tbody>
           {mails.map((data, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td><a href="/selectedmailhome"><button>{index + 1}</button></a></td>
               <td>
                 {data.recipients.map((data, index) => (
                   <div key={index}>{data} </div>
@@ -82,6 +84,7 @@ export default function Home(props) {
                 })()}
               </td>
             </tr>
+            
           ))}
         </tbody>
       </Table>
