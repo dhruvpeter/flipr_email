@@ -5,13 +5,13 @@ import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
 import Month from './Monthly'
 import axios from 'axios'
-import { Alert } from 'react-bootstrap'
+
 export default function Compose({ token }) {
-    const [toSend, setToSend] = useState({
+    const [input, setinput] = useState({
         to:'',
-        cc:'',
+        cc:[],
         subject:'',
-        t:'',
+        type:'',
         mailbody:'',
         day:'',
         date:'',
@@ -26,9 +26,9 @@ export default function Compose({ token }) {
         };
 
         const res = await axios.post(url, {
-                recipients: `${toSend.to}, ${toSend.cc}`,
-                subject: toSend.subject,
-                body: toSend.mailbody,
+                recipients: `${input.to}, ${input.cc}`,
+                subject: input.subject,
+                body: input.mailbody,
                 schedule 
             },
             options
@@ -39,13 +39,6 @@ export default function Compose({ token }) {
 
         if(res.data && res.data.success) {
             // success redirect
-            return (
-                <Alert variant="success" style={{ width: 500, textAlign: "center" }}>
-                    Email Sent Successfully
-                    <br />
-                    <Alert.Link href="#">Go to Home</Alert.Link>
-                </Alert>
-            )
 
         } else {
             // failure redirect
@@ -55,11 +48,11 @@ export default function Compose({ token }) {
     }
     
      const onSubmit = (e) => {
-        console.log(toSend);
+        console.log(input);
         e.preventDefault();
         {/* --- METHOD TO SEND THE MAIL --- */}
 
-        switch(toSend.t) {
+        switch(input.t) {
             case 'recurring':
                 // do the processing here
                 scheduleMails('http://localhost:3000/api/emails/recurring', { timeGap: 30 });
@@ -68,8 +61,8 @@ export default function Compose({ token }) {
                 return scheduleMails(
                     'http://localhost:3000/api/emails/weekly', 
                     { 
-                        day: toSend.day, 
-                        time: toSend.time 
+                        day: input.day, 
+                        time: input.time 
                     }
                 );
                 break;
@@ -77,8 +70,8 @@ export default function Compose({ token }) {
                 scheduleMails(
                     'https:localhost:3000/api/emails/monthly', 
                     { 
-                        date: toSend.date,
-                        time: toSend.time 
+                        date: input.date,
+                        time: input.time 
                     }
                 );
                 break;
@@ -86,9 +79,9 @@ export default function Compose({ token }) {
                 scheduleMails(
                     'http://localhost:3000/api/emails/yearlyy', 
                     { 
-                        month: toSend.month, 
-                        date: toSend.date, 
-                        time: toSend.time 
+                        month: input.month, 
+                        date: input.date, 
+                        time: input.time 
                     }
                 );
                 break;
@@ -98,30 +91,34 @@ export default function Compose({ token }) {
       };
     
       const handleChange = (e) => {
-        setToSend({ ...toSend, [e.target.name]: e.target.value });
+        setinput({ ...input, [e.target.name]: e.target.value });
         
       };
+    //   const handleChangecc = (e) =>{
+    //     setinput({ ...input, [e.target.name]: e.target.value.split(',').map(s => s.trim()) });
+
+    //   };
       const s = (t) =>{
           if(t == 'monthly'){
               console.log('hi');
               
               return(<div>
                   <label>Date</label>
-                    <input type="text" name="date" onChange={handleChange} value={toSend.date}></input>
+                    <input type="text" name="date" onChange={handleChange} value={input.date}></input>
 
 
                     <label>Time</label>
-                            <input type="text" name='time' onChange={handleChange} value={toSend.time}></input>
+                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>
               </div>);}
            if(t == 'weekly'){
                return(
                 <div>
                     <label>Day</label>
-                    <input type="text" name='day' onChange={handleChange} value={toSend.day}></input>
+                    <input type="text" name='day' onChange={handleChange} value={input.day}></input>
 
 
                     <label>Time</label>
-                            <input type="text" name='time' onChange={handleChange} value={toSend.time}></input>               
+                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>               
                 </div>
                );
            } 
@@ -129,13 +126,13 @@ export default function Compose({ token }) {
                return(
                    <div>
                     <label>Date</label>
-                    <input type="text" name="date" onChange={handleChange} value={toSend.date}></input>
+                    <input type="text" name="date" onChange={handleChange} value={input.date}></input>
 
   
                     <label>Month</label>
-                    <input type="text" name='month' onChange={handleChange} value={toSend.month}></input>
+                    <input type="text" name='month' onChange={handleChange} value={input.month}></input>
                     <label>Time</label>
-                            <input type="text" name='time' onChange={handleChange} value={toSend.time}></input>
+                            <input type="text" name='time' onChange={handleChange} value={input.time}></input>
                    </div>
                )
            }
@@ -152,20 +149,20 @@ export default function Compose({ token }) {
                         <div class="form-group" className="input">
                             <label for="to" class="col-sm-1 control-label">To:</label>
                             <div class="col-sm-11">
-                                <input type="email" class="form-control select2-offscreen" id="to" placeholder="Type email" tabindex="-1" name="to" value={toSend.to} onChange={handleChange}/>
+                                <input type="email" class="form-control select2-offscreen" id="to" placeholder="Type email" tabindex="-1" name="to" value={input.to} onChange={handleChange}/>
                             </div>
                         </div>
                         <div class="form-group" className="input">
                             <label for="cc" class="col-sm-1 control-label">CC:</label>
                             <div class="col-sm-11">
-                                <input type="email" class="form-control select2-offscreen" id="cc" placeholder="Type email" tabindex="-1" name="cc" value={toSend.cc}
+                                <input type="email" class="form-control select2-offscreen" id="cc" placeholder="Type email" tabindex="-1" name="cc" value={input.cc}
                         onChange={handleChange}/>
                             </div>
                         </div>
                         <div class="form-group" className="input">
                             <label for="bcc" class="col-sm-1 control-label">Sub:</label>
                             <div class="col-sm-11">
-                                <input type="email" class="form-control select2-offscreen" id="bcc" placeholder="Subject" tabindex="-1" name="subject" value={toSend.subject}
+                                <input type="email" class="form-control select2-offscreen" id="bcc" placeholder="Subject" tabindex="-1" name="subject" value={input.subject}
                         onChange={handleChange}/>
                             </div>
                         </div>
@@ -192,7 +189,7 @@ export default function Compose({ token }) {
                         <div className="schedule">
                             <p>Schedule:</p>
                         <div class="form-group" id="w">
-                            <select name ='t'  onChange={handleChange}  value={toSend.t}>
+                            <select name ='t'  onChange={handleChange}  value={input.t}>
                             <option name = 't' value="----">----</option>
                             <option name = 't' value="weekly">Weekly</option>
                             <option name = 't' value="monthly">Monthly</option>
@@ -200,12 +197,12 @@ export default function Compose({ token }) {
                             <option name = 't'  value="recurring">Recurring</option>
                             </select>
                         </div>
-                        {s(toSend.t)}
+                        {s(input.t)}
                         </div>
                     
                         
                         <div class="form-group" className="mailbody">
-                            <textarea class="form-control" id="message" name="mailbody" rows="12" placeholder="Click here to reply" value={toSend.mailbody}
+                            <textarea class="form-control" id="message" name="mailbody" rows="12" placeholder="Click here to reply" value={input.mailbody}
                         onChange={handleChange}></textarea>
                         </div>
                         
