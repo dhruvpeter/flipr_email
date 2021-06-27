@@ -5,7 +5,7 @@ export default function Home() {
   const mail = [
     {
       from: "from@gmail.com",
-      to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
+      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       body: "Body of mail",
@@ -18,7 +18,7 @@ export default function Home() {
     },
     {
       from: "from@gmail.com",
-      to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
+      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       body: "Body of mail",
@@ -31,7 +31,7 @@ export default function Home() {
     },
     {
       from: "from@gmail.com",
-      to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
+      recipients: ["to@gmail.com", "cc1@gmail.com", "cc2@gmail.com"],
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       body: "Body of mail",
@@ -67,7 +67,11 @@ export default function Home() {
           {mail.map((data, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{data.to}</td>
+              <td>
+                {data.recipients.map((data, index) => (
+                  <div key={index}>{data} </div>
+                ))}
+              </td>
               <td colSpan="3">{data.subject}</td>
               <td>
                 {(() => {
