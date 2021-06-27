@@ -3,7 +3,6 @@ import './Compose.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
-import Month from './Monthly'
 export default function Compose() {
     const [input, setinput] = useState({
         to:'',

@@ -5,11 +5,13 @@ import SelectedMailHistory from "./components/History/SelectedMailHistory/Select
 import History from "./components/History/History";
 import Home from "./components/Home/Home";
 import Compose from "./components/Compose/Compose";
+import AlertSuccess from "./components/Compose/AlertSuccess/AlertSuccess";
+import AlertFailure from "./components/Compose/AlertFailure/AlertFailure";
 function App() {
   return (
     <div className="App">
-      {/* <Navigationbar /> */}
-      <Login />
+      <Navigationbar />
+      <AlertFailure />
     </div>
   );
 }
