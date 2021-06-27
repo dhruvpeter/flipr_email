@@ -6,7 +6,6 @@ export default function Home() {
     {
       from: "from@gmail.com",
       to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
-      sentDate: "December 17, 2020 03:24:00",
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       body: "Body of mail",
@@ -20,12 +19,11 @@ export default function Home() {
     {
       from: "from@gmail.com",
       to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
-      sentDate: "December 17, 2020 03:24:00",
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       body: "Body of mail",
       type: "monthly",
-      count: 1,
+      count: 0,
       schedule: {
         date: "26",
         time: "19:37:00",
@@ -34,33 +32,22 @@ export default function Home() {
     {
       from: "from@gmail.com",
       to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
-      sentDate: "December 17, 2020 03:24:00",
       subject:
         "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       body: "Body of mail",
       type: "yearly",
-      count: 1,
+      count: 0,
       schedule: {
         date: "26",
         month: "6",
         time: "19:41:00",
       },
     },
-    {
-      from: "from@gmail.com",
-      to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
-      sentDate: "December 17, 2020 03:24:00",
-      subject:
-        "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      body: "Body of mail",
-      type: "recurring",
-      count: 10,
-    },
   ];
 
   //Filtering mails based on count. if count>0, then it is already sent.
   //Only those mails are needed to be displayed
-  const history_mail = mail.filter((data, index) => data.count > 0);
+  //const home_mail = mail.filter((data, index) => data.count == 0);
 
   return (
     <div className="container-fluid">
@@ -73,16 +60,46 @@ export default function Home() {
             <th>Subject</th>
             <th></th>
             <th></th>
-            <th>Time</th>
+            <th>To be sent on</th>
           </tr>
         </thead>
         <tbody>
-          {history_mail.map((data, index) => (
+          {mail.map((data, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{data.to}</td>
               <td colSpan="3">{data.subject}</td>
-              <td>{data.sentDate}</td>
+              <td>
+                {(() => {
+                  if (data.type == "weekly") {
+                    return (
+                      <div>
+                        {data.schedule.day}
+                        {",  "}
+                        {data.schedule.time}
+                      </div>
+                    );
+                  } else if (data.type == "monthly") {
+                    return (
+                      <div>
+                        {data.schedule.date}
+                        {",  "}
+                        {data.schedule.time}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div>
+                        {data.schedule.date}
+                        {"/"}
+                        {data.schedule.month}
+                        {",  "}
+                        {data.schedule.time}
+                      </div>
+                    );
+                  }
+                })()}
+              </td>
             </tr>
           ))}
         </tbody>

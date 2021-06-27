@@ -5,12 +5,16 @@ export default function SelectedMailHome() {
   const mail = {
     from: "from@gmail.com",
     to: "to@gmail.com, cc1@gmail.com, cc2@gmail.com",
-    sentDate: "December 17, 2020 03:24:00",
     subject:
       "Subject of the mail-Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    body: "Body of mail Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    body: "Body of mail",
     type: "yearly",
-    count: 1,
+    count: 0,
+    schedule: {
+      date: "26",
+      month: "6",
+      time: "19:41:00",
+    },
   };
   return (
     <div className="container-fluid">
@@ -34,8 +38,36 @@ export default function SelectedMailHome() {
       <br />
       <div className="to">
         <div className="date">
-          <h6>Date:</h6>
-          {mail.sentDate}
+          <h6>To Be Sent On:</h6>
+          {(() => {
+            if (mail.type == "weekly") {
+              return (
+                <div>
+                  {mail.schedule.day}
+                  {",  "}
+                  {mail.schedule.time}
+                </div>
+              );
+            } else if (mail.type == "monthly") {
+              return (
+                <div>
+                  {mail.schedule.date}
+                  {",  "}
+                  {mail.schedule.time}
+                </div>
+              );
+            } else {
+              return (
+                <div>
+                  {mail.schedule.date}
+                  {"/"}
+                  {mail.schedule.month}
+                  {",  "}
+                  {mail.schedule.time}
+                </div>
+              );
+            }
+          })()}
         </div>
       </div>
 
