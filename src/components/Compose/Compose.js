@@ -5,8 +5,6 @@ import DatePicker from 'react-date-picker'
 import TimePicker from 'react-time-picker'
 import Month from './Monthly'
 export default function Compose() {
-    const [value, onChangeDate] = useState(new Date());
-    const [time, onChangeTime] = useState('10:00');
     const [toSend, setToSend] = useState({
         to:'',
         cc:'',
@@ -16,8 +14,7 @@ export default function Compose() {
         day:'',
         date:'',
         month:'',
-        
-        
+        time:''
         
       });
     
@@ -40,12 +37,19 @@ export default function Compose() {
                   <label>Date</label>
                     <input type="text" name="date" onChange={handleChange} value={toSend.date}></input>
 
+
+                    <label>Time</label>
+                            <input type="text" name='time' onChange={handleChange} value={toSend.time}></input>
               </div>);}
            if(t == 'weekly'){
                return(
                 <div>
                     <label>Day</label>
                     <input type="text" name='day' onChange={handleChange} value={toSend.day}></input>
+
+
+                    <label>Time</label>
+                            <input type="text" name='time' onChange={handleChange} value={toSend.time}></input>               
                 </div>
                );
            } 
@@ -58,6 +62,8 @@ export default function Compose() {
   
                     <label>Month</label>
                     <input type="text" name='month' onChange={handleChange} value={toSend.month}></input>
+                    <label>Time</label>
+                            <input type="text" name='time' onChange={handleChange} value={toSend.time}></input>
                    </div>
                )
            }
@@ -110,36 +116,19 @@ export default function Compose() {
                         </div>
                         {/* <br>	 */}
                         
-                        <div class="form-group" className="check">
-                        
-                        <input type="checkbox"/>
-                        <label for="bcc" class="col-sm-1 control-label" id="c">Recurring </label>
-                        </div>
+
                         <div className="schedule">
+                            <p>Schedule:</p>
                         <div class="form-group" id="w">
                             <select name ='t'  onChange={handleChange}  value={toSend.t}>
+                            <option name = 't' value="----">----</option>
                             <option name = 't' value="weekly">Weekly</option>
                             <option name = 't' value="monthly">Monthly</option>
                             <option name = 't'  value="yearly">Yearly</option>
+                            <option name = 't'  value="recurring">Recurring</option>
                             </select>
                         </div>
                         {s(toSend.t)}
-                        {/* <div class="form-group" className="date">
-                        
-                        <DatePicker
-                        id="dt"
-                        onChange={onChangeDate}
-                        value={value}
-                        />
-                        </div>
-                        <div class="form-group" className="date">
-                        
-                        <TimePicker
-                        id="dt"
-                         onChange={onChangeTime}
-                         value={time}
-                        />
-                        </div> */}
                         </div>
                     
                         
