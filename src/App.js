@@ -15,33 +15,6 @@ function App(props) {
   return (
     <div className="App">
         <Links/>
-      {/* <Router>
-        <Route 
-          path='/'
-          exact
-          render={(props) => (
-            <Login />
-          )}
-        />
-        <Route 
-          path='/home'
-          render={(props) => (
-            <Home {...props} token={localStorage.getItem('token')} />
-          )}
-        />
-        <Route
-          path='/history'
-          render={(props)=>{
-            <History {...props} token={localStorage.getItem('token')} />
-          }}
-        />
-        <Route
-          path='/compose'
-          render={(props)=>{
-            <Compose {...props} token={localStorage.getItem('token')} />
-          }}
-        />
-      </Router> */}
     </div>
   );
 }

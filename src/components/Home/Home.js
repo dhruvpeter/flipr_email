@@ -12,7 +12,7 @@ export default function Home(props) {
     console.log(props);
     const res = await axios({
       method: 'GET',
-      url: 'http://localhost:3000/api/emails/scheduled',
+      url: '/api/emails/scheduled',
       headers: {
         authorization: `BEARER ${props.token}`
       }
@@ -45,7 +45,7 @@ export default function Home(props) {
         <tbody>
           {mails.map((data, index) => (
             <tr key={index}>
-              <td><a href="/selectedmailhome"><button>{index + 1}</button></a></td>
+              <td>{index + 1}</td>
               <td>
                 {data.recipients.map((data, index) => (
                   <div key={index}>{data} </div>
